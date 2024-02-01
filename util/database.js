@@ -22,7 +22,11 @@ const executeQuery = (query, arrParams) => {
           console.log("Error in executing the query");
           reject(err);
         }
-        resolve(data);
+        if (Array.isArray(data) && data.length === 1){
+          resolve(data[0]);
+        } else {
+          resolve(data);
+        }
       });
     } catch (err) {
       reject(err);
